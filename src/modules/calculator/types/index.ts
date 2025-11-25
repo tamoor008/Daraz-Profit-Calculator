@@ -38,6 +38,7 @@ export interface CalculatedValues {
   net: number;
   profit: number;
   roi: number;
+  profitMargin: number;
 }
 
 export interface CommissionNode {

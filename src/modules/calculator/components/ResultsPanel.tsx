@@ -92,7 +92,12 @@ export const ResultsPanel = ({ calculated, categoryLabel }: ResultsPanelProps) =
       <div className={styles.resultRowHighlight}>
         <div>
           <p>Profit</p>
-          <strong>{currency.format(calculated.profit)}</strong>
+          <strong>
+            {currency.format(calculated.profit)}{' '}
+            <span className={calculated.profitMargin >= 0 ? styles.positive : styles.negative}>
+              ({percent.format(calculated.profitMargin / 100)})
+            </span>
+          </strong>
         </div>
         <div>
           <p>ROI</p>

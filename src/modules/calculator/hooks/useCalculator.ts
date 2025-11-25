@@ -1,15 +1,16 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { DEFAULT_FORM_DATA } from '../constants/presets';
 import { getCommissionOption } from '../constants/commissions';
 import { getHandlingFeeForPrice } from '../constants/handlingFee';
 import { calculateDerivedValues } from '../utils/calculations';
 import { parseNumericInput } from '../utils/numeric';
-import { CalculatorFormData } from '../types';
+import { CalculatorFormData, CalculatedValues } from '../types';
 
 export const useCalculator = () => {
   const [formData, setFormData] = useState<CalculatorFormData>(DEFAULT_FORM_DATA);
-
-  const calculated = useMemo(() => calculateDerivedValues(formData), [formData]);
+  const [calculated, setCalculated] = useState<CalculatedValues>(() =>
+    calculateDerivedValues(DEFAULT_FORM_DATA),
+  );
 
   const updateField = <K extends keyof CalculatorFormData>(
     field: K,
@@ -45,11 +46,16 @@ export const useCalculator = () => {
     }));
   }, [formData.sellingPrice]);
 
+  const calculate = () => {
+    setCalculated(calculateDerivedValues(formData));
+  };
+
   return {
     formData,
     calculated,
     updateField,
     setCategoryKey,
+    calculate,
   };
 };
 

@@ -8,7 +8,7 @@
   text-transform: uppercase;
   font-size: 0.75rem;
   letter-spacing: 0.2em;
-  color: #a5b4fc;
+  color: #94a3b8;
   margin: 0;
 }
 
@@ -22,11 +22,36 @@
 
 .cardHeader h2 {
   margin: 0.25rem 0;
+  color: #0f172a;
 }
 
 .cardHeader p {
   margin: 0;
+  color: #64748b;
+}
+
+.inputCard .eyebrow {
   color: #475569;
+}
+
+.inputCard h2 {
+  color: #0f172a;
+}
+
+.inputCard p {
+  color: #475569;
+}
+
+.resultsCard .eyebrow {
+  color: #c7d2fe;
+}
+
+.resultsCard h2 {
+  color: #f8fafc;
+}
+
+.resultsCard p {
+  color: #e0e7ff;
 }
 
 .grid {
@@ -37,7 +62,7 @@
 
 .inputCard,
 .resultsCard {
-  background: #fff;
+  background: #ffffff;
   border-radius: 1.5rem;
   padding: 2rem;
   box-shadow: 0 12px 35px rgba(15, 23, 42, 0.1);
@@ -101,6 +126,31 @@
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1rem;
   margin-top: 1.5rem;
+}
+
+.calculateButton {
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 1rem 1.25rem;
+  border: none;
+  border-radius: 1rem;
+  background: #4338ca;
+  color: #f8fafc;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(67, 56, 202, 0.25);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.calculateButton:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 30px rgba(67, 56, 202, 0.35);
+}
+
+.calculateButton:active {
+  transform: translateY(0);
+  box-shadow: 0 8px 20px rgba(67, 56, 202, 0.3);
 }
 
 .switchControl {
@@ -179,7 +229,7 @@
 
 .resultsCard {
   background: linear-gradient(145deg, #312e81, #4338ca);
-  color: #fff;
+  color: #f8fafc;
 }
 
 .resultList {
@@ -194,10 +244,23 @@
   align-items: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding-bottom: 0.75rem;
+  gap: 1rem;
+}
+
+.resultRow span {
+  color: #c7d2fe;
+  font-weight: 500;
+  white-space: nowrap;
 }
 
 .resultRow strong {
   font-size: 1.15rem;
+  color: #fff;
+  flex: 1;
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .resultRowHighlight {
@@ -212,6 +275,9 @@
 
 .resultRowHighlight strong {
   font-size: 1.5rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
 }
 
 .positive {
@@ -220,6 +286,10 @@
 
 .negative {
   color: #f87171;
+}
+
+.resultRowHighlight strong span {
+  font-size: 1rem;
 }
 
 @media (max-width: 720px) {
@@ -231,6 +301,16 @@
   .inputCard,
   .resultsCard {
     padding: 1.5rem;
+  }
+
+  .switchControl {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .switchAction {
+    width: 100%;
+    justify-content: space-between;
   }
 }
 

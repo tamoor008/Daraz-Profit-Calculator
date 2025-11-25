@@ -10,6 +10,7 @@ interface InputGridProps {
     value: CalculatorFormData[K],
   ) => void;
   onCategoryChange: (categoryId: string) => void;
+  onCalculate: () => void;
   selectedCategoryLabel: string;
 }
 
@@ -65,6 +66,7 @@ export const InputGrid = ({
   formData,
   updateField,
   onCategoryChange,
+  onCalculate,
   selectedCategoryLabel,
 }: InputGridProps) => {
   const [categoryQuery, setCategoryQuery] = useState(selectedCategoryLabel);
@@ -183,6 +185,10 @@ export const InputGrid = ({
           </div>
         ))}
       </div>
+
+      <button type="button" className={styles.calculateButton} onClick={onCalculate}>
+        Calculate Profit
+      </button>
     </section>
   );
 };

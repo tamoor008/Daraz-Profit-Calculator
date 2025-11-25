@@ -34,11 +34,10 @@ export const calculateDerivedValues = (data: CalculatorFormData): CalculatedValu
     : 0;
   const salesTaxWithholding = data.salesTaxWithholding ? Math.round(sellingPrice * 0.02) : 0;
 
-  const totalCharges =
+  const totalChargesExPacking =
     shippingVatCharges +
     commissionVatCharges +
     darazCharges +
-    packingPrice +
     orderHandlingPrice +
     extraCharges +
     freeShippingCharge +
@@ -49,9 +48,11 @@ export const calculateDerivedValues = (data: CalculatorFormData): CalculatedValu
     incomeTaxWithholding +
     salesTaxWithholding;
 
-  const net = sellingPrice - totalCharges;
-  const profit = net - purchasingPrice;
-  const roi = purchasingPrice > 0 ? (profit / purchasingPrice) * 100 : 0;
+  const net = sellingPrice - totalChargesExPacking;
+  const profit = net - purchasingPrice - packingPrice;
+  const investmentBase = purchasingPrice + packingPrice;
+  const roi = investmentBase > 0 ? (profit / investmentBase) * 100 : 0;
+  const profitMargin = sellingPrice > 0 ? (profit / sellingPrice) * 100 : 0;
 
   return {
     vatCharges,
@@ -74,6 +75,7 @@ export const calculateDerivedValues = (data: CalculatorFormData): CalculatedValu
     net,
     profit,
     roi,
+    profitMargin,
   };
 };
 
