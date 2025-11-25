@@ -312,5 +312,20 @@
     width: 100%;
     justify-content: space-between;
   }
+
+  .resultRow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .resultRow span,
+  .resultRow strong {
+    text-align: left;
+    white-space: normal;
+  }
+
+  .resultRow strong {
+    width: 100%;
+  }
 }
 
