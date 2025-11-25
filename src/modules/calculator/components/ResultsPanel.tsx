@@ -44,11 +44,11 @@ export const ResultsPanel = ({ calculated, categoryLabel }: ResultsPanelProps) =
         <strong>{formatBreakdown(calculated.shippingCharge, calculated.shippingVatCharges)}</strong>
       </div>
       <div className={styles.resultRow}>
-        <span>Daraz Commission (6%) + VAT</span>
+        <span>Daraz Commission + VAT</span>
         <strong>{formatBreakdown(calculated.commissionAmount, calculated.commissionVatShare)}</strong>
       </div>
       <div className={styles.resultRow}>
-        <span>Payment Handling Fee (2.25%) + VAT</span>
+        <span>Payment Handling Fee + VAT</span>
         <strong>
           {formatBreakdown(calculated.paymentHandlingAmount, calculated.paymentHandlingVatShare)}
         </strong>
