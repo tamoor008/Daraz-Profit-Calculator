@@ -1,0 +1,37 @@
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.app-hero {
+  background: rgba(15, 23, 42, 0.85);
+  color: #fff;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.35);
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.75rem;
+  margin-bottom: 0.5rem;
+  color: #c7d2fe;
+}
+
+.app-hero h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin: 0 0 0.75rem;
+}
+
+.app-hero p {
+  max-width: 640px;
+  margin: 0;
+  color: #e0e7ff;
+}
+
+.app-main {
+  width: 100%;
+}
+
