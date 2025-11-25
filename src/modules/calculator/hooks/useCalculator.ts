@@ -4,7 +4,7 @@ import { getCommissionOption } from '../constants/commissions';
 import { getHandlingFeeForPrice } from '../constants/handlingFee';
 import { calculateDerivedValues } from '../utils/calculations';
 import { parseNumericInput } from '../utils/numeric';
-import { CalculatorFormData, FulfillmentType } from '../types';
+import { CalculatorFormData } from '../types';
 
 export const useCalculator = () => {
   const [formData, setFormData] = useState<CalculatorFormData>(DEFAULT_FORM_DATA);
@@ -18,13 +18,6 @@ export const useCalculator = () => {
     setFormData((prev) => ({
       ...prev,
       [field]: typeof value === 'number' && Number.isNaN(value) ? ('' as CalculatorFormData[K]) : value,
-    }));
-  };
-
-  const setFulfillmentType = (type: FulfillmentType) => {
-    setFormData((prev) => ({
-      ...prev,
-      fulfillmentType: type,
     }));
   };
 
@@ -56,7 +49,6 @@ export const useCalculator = () => {
     formData,
     calculated,
     updateField,
-    setFulfillmentType,
     setCategoryKey,
   };
 };

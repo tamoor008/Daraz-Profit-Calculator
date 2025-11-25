@@ -1,5 +1,3 @@
-export type FulfillmentType = 'FBM' | 'FBD';
-
 type NumericValue = number | '';
 
 export interface CalculatorFormData {
@@ -12,7 +10,6 @@ export interface CalculatorFormData {
   extraCharges: NumericValue;
   packingPrice: NumericValue;
   orderHandlingPrice: NumericValue;
-  fulfillmentType: FulfillmentType;
   freeShippingMax: boolean;
   voucherMax: boolean;
   incomeTaxWithholding: boolean;
@@ -34,6 +31,10 @@ export interface CalculatedValues {
   incomeTaxWithholding: number;
   salesTaxWithholding: number;
   orderHandlingVatCharges: number;
+  shippingCharge: number;
+  orderHandlingCharge: number;
+  commissionVatShare: number;
+  paymentHandlingVatShare: number;
   net: number;
   profit: number;
   roi: number;

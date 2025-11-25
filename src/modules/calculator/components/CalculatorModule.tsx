@@ -5,8 +5,7 @@ import { getCommissionOption } from '../constants/commissions';
 import styles from '../styles/calculator.module.css';
 
 export const CalculatorModule = () => {
-  const { formData, calculated, updateField, setFulfillmentType, setCategoryKey } =
-    useCalculator();
+  const { formData, calculated, updateField, setCategoryKey } = useCalculator();
 
   const selectedCategory = getCommissionOption(formData.categoryKey);
 
@@ -16,15 +15,10 @@ export const CalculatorModule = () => {
         <InputGrid
           formData={formData}
           updateField={updateField}
-          setFulfillmentType={setFulfillmentType}
           onCategoryChange={setCategoryKey}
           selectedCategoryLabel={selectedCategory.pathLabel}
         />
-        <ResultsPanel
-          fulfillmentType={formData.fulfillmentType}
-          calculated={calculated}
-          categoryLabel={selectedCategory.pathLabel}
-        />
+        <ResultsPanel calculated={calculated} categoryLabel={selectedCategory.pathLabel} />
       </div>
     </section>
   );

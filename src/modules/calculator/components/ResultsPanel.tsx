@@ -1,8 +1,7 @@
-import { CalculatedValues, FulfillmentType } from '../types';
+import { CalculatedValues } from '../types';
 import styles from '../styles/calculator.module.css';
 
 interface ResultsPanelProps {
-  fulfillmentType: FulfillmentType;
   calculated: CalculatedValues;
   categoryLabel: string;
 }
@@ -18,73 +17,72 @@ const percent = new Intl.NumberFormat('en-US', {
   maximumFractionDigits: 2,
 });
 
-export const ResultsPanel = ({ fulfillmentType, calculated, categoryLabel }: ResultsPanelProps) => (
+const formatBreakdown = (base: number, vat?: number) => {
+  if (vat && vat > 0) {
+    return `${currency.format(base)} + ${currency.format(vat)} = ${currency.format(base + vat)}`;
+  }
+  return currency.format(base);
+};
+
+export const ResultsPanel = ({ calculated, categoryLabel }: ResultsPanelProps) => (
   <section className={styles.resultsCard}>
     <div className={styles.cardHeader}>
       <div>
         <p className={styles.eyebrow}>Results</p>
         <h2>Profitability</h2>
-        <p>Live ROI snapshot for your selected fulfillment strategy.</p>
+        <p>Live ROI snapshot for your configured listing.</p>
       </div>
     </div>
 
     <div className={styles.resultList}>
       <div className={styles.resultRow}>
-        <span>Fulfillment Type</span>
-        <strong>{fulfillmentType}</strong>
-      </div>
-      <div className={styles.resultRow}>
         <span>Category</span>
         <strong>{categoryLabel}</strong>
       </div>
       <div className={styles.resultRow}>
-        <span>Daraz Commission</span>
-        <strong>{currency.format(calculated.commissionAmount)}</strong>
+        <span>Shipping Charges + VAT</span>
+        <strong>{formatBreakdown(calculated.shippingCharge, calculated.shippingVatCharges)}</strong>
       </div>
       <div className={styles.resultRow}>
-        <span>Payment Handling Fee</span>
-        <strong>{currency.format(calculated.paymentHandlingAmount)}</strong>
+        <span>Daraz Commission (6%) + VAT</span>
+        <strong>{formatBreakdown(calculated.commissionAmount, calculated.commissionVatShare)}</strong>
+      </div>
+      <div className={styles.resultRow}>
+        <span>Payment Handling Fee (2.25%) + VAT</span>
+        <strong>
+          {formatBreakdown(calculated.paymentHandlingAmount, calculated.paymentHandlingVatShare)}
+        </strong>
+      </div>
+      <div className={styles.resultRow}>
+        <span>Handling Fee + VAT</span>
+        <strong>{formatBreakdown(calculated.orderHandlingCharge, calculated.orderHandlingVatCharges)}</strong>
       </div>
       {calculated.freeShippingCharge > 0 && (
         <div className={styles.resultRow}>
-          <span>Free Shipping Max (6%)</span>
-          <strong>{currency.format(calculated.freeShippingCharge)}</strong>
+          <span>Free Shipping Max (6%) + VAT</span>
+          <strong>{formatBreakdown(calculated.freeShippingCharge, calculated.freeShippingVatCharges)}</strong>
         </div>
       )}
       {calculated.voucherCharge > 0 && (
         <div className={styles.resultRow}>
-          <span>Voucher Max (2%)</span>
-          <strong>{currency.format(calculated.voucherCharge)}</strong>
+          <span>Voucher Max (2%) + VAT</span>
+          <strong>{formatBreakdown(calculated.voucherCharge, calculated.voucherVatCharges)}</strong>
+        </div>
+      )}
+      {calculated.incomeTaxWithholding > 0 && (
+        <div className={styles.resultRow}>
+          <span>Income Tax Withholding (2%)</span>
+          <strong>{formatBreakdown(calculated.incomeTaxWithholding)}</strong>
+        </div>
+      )}
+      {calculated.salesTaxWithholding > 0 && (
+        <div className={styles.resultRow}>
+          <span>Sales Tax Withholding (2%)</span>
+          <strong>{formatBreakdown(calculated.salesTaxWithholding)}</strong>
         </div>
       )}
       <div className={styles.resultRow}>
-        <span>VAT on Shipping Charges</span>
-        <strong>{currency.format(calculated.shippingVatCharges)}</strong>
-      </div>
-      <div className={styles.resultRow}>
-        <span>VAT on Daraz Commission</span>
-        <strong>{currency.format(calculated.commissionVatCharges)}</strong>
-      </div>
-      {calculated.orderHandlingVatCharges > 0 && (
-        <div className={styles.resultRow}>
-          <span>VAT on Handling Fee</span>
-          <strong>{currency.format(calculated.orderHandlingVatCharges)}</strong>
-        </div>
-      )}
-      {calculated.freeShippingVatCharges > 0 && (
-        <div className={styles.resultRow}>
-          <span>VAT on Free Shipping Max</span>
-          <strong>{currency.format(calculated.freeShippingVatCharges)}</strong>
-        </div>
-      )}
-      {calculated.voucherVatCharges > 0 && (
-        <div className={styles.resultRow}>
-          <span>VAT on Voucher Max</span>
-          <strong>{currency.format(calculated.voucherVatCharges)}</strong>
-        </div>
-      )}
-      <div className={styles.resultRow}>
-        <span>Daraz Charges</span>
+        <span>Daraz Charges (base)</span>
         <strong>{currency.format(calculated.darazCharges)}</strong>
       </div>
       <div className={styles.resultRow}>

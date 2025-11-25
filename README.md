@@ -1,6 +1,6 @@
 # Daraz Profit Calculator
 
-A React + Vite + TypeScript application for calculating profitability of Daraz orders with support for FBM (Fulfillment by Merchant) and FBD (Fulfillment by Daraz) fulfillment types. The UI is split into reusable, self-contained modules so future features can be added without touching existing surfaces.
+A React + Vite + TypeScript application for calculating profitability of Daraz orders. The UI is split into reusable, self-contained modules so future features can be added without touching existing surfaces.
 
 ## Features
 
@@ -9,7 +9,6 @@ A React + Vite + TypeScript application for calculating profitability of Daraz o
 - Category selector powered by `src/data/commissions.json` with searchable type-ahead and auto-filled commissions
 - Manual commission override plus Free Shipping Max & Voucher Max safety switches
 - VAT logic mirrors real Daraz deductions (VAT on shipping, handling fees, Daraz commissions, and promo subsidies; none on selling price)
-- Support for both FBM and FBD fulfillment types
 - Real-time calculation updates with live ROI insights
 - Modern, responsive UI
 
@@ -41,8 +40,7 @@ npm run preview
 
 ## Usage
 
-1. Select a fulfillment type (FBM or FBD)
-2. Enter your order parameters:
+1. Enter your order parameters:
    - Category (type to search; auto-applies the commission but can be overridden)
    - Daraz Commission % (editable)
    - Payment Handling Fee %
@@ -53,7 +51,7 @@ npm run preview
    - Extra Charges
    - Packing Price
    - Order Handling Price
-3. View calculated results:
+2. View calculated results:
    - VAT Charges
    - Daraz Charges
    - Net Revenue

@@ -11,7 +11,6 @@ export const DEFAULT_FORM_DATA: CalculatorFormData = {
   extraCharges: 0,
   packingPrice: 10,
   orderHandlingPrice: 5,
-  fulfillmentType: 'FBM',
   freeShippingMax: false,
   voucherMax: false,
   incomeTaxWithholding: true,

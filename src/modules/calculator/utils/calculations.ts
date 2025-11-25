@@ -23,6 +23,12 @@ export const calculateDerivedValues = (data: CalculatorFormData): CalculatedValu
   const freeShippingVatCharges = freeShippingCharge * vatRate;
   const voucherVatCharges = voucherCharge * vatRate;
   const orderHandlingVatCharges = orderHandlingPrice * vatRate;
+  const shippingCharge = shippingCharges;
+  const orderHandlingCharge = orderHandlingPrice;
+  const commissionVatShare =
+    darazCharges > 0 ? (commissionAmount / darazCharges) * commissionVatCharges : 0;
+  const paymentHandlingVatShare =
+    darazCharges > 0 ? (paymentHandlingAmount / darazCharges) * commissionVatCharges : 0;
   const incomeTaxWithholding = data.incomeTaxWithholding
     ? Math.round(sellingPrice * 0.02)
     : 0;
@@ -61,6 +67,10 @@ export const calculateDerivedValues = (data: CalculatorFormData): CalculatedValu
     incomeTaxWithholding,
     salesTaxWithholding,
     orderHandlingVatCharges,
+    shippingCharge,
+    orderHandlingCharge,
+    commissionVatShare,
+    paymentHandlingVatShare,
     net,
     profit,
     roi,

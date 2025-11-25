@@ -1,6 +1,6 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import { COMMISSION_GROUPS, COMMISSION_OPTIONS } from '../constants/commissions';
-import { CalculatorFormData, FulfillmentType } from '../types';
+import { CalculatorFormData } from '../types';
 import styles from '../styles/calculator.module.css';
 
 interface InputGridProps {
@@ -9,7 +9,6 @@ interface InputGridProps {
     field: K,
     value: CalculatorFormData[K],
   ) => void;
-  setFulfillmentType: (type: FulfillmentType) => void;
   onCategoryChange: (categoryId: string) => void;
   selectedCategoryLabel: string;
 }
@@ -65,7 +64,6 @@ const SWITCH_CONFIG: Array<{
 export const InputGrid = ({
   formData,
   updateField,
-  setFulfillmentType,
   onCategoryChange,
   selectedCategoryLabel,
 }: InputGridProps) => {
@@ -121,23 +119,7 @@ export const InputGrid = ({
         <div>
           <p className={styles.eyebrow}>Inputs</p>
           <h2>Order Parameters</h2>
-          <p>Fine-tune the assumptions for your FBM or FBD listing.</p>
-        </div>
-      </div>
-
-      <div className={styles.fulfillmentToggle}>
-        <span>Fulfillment Type</span>
-        <div>
-          {(['FBM', 'FBD'] as FulfillmentType[]).map((type) => (
-            <button
-              key={type}
-              type="button"
-              className={formData.fulfillmentType === type ? styles.toggleActive : ''}
-              onClick={() => setFulfillmentType(type)}
-            >
-              {type}
-            </button>
-          ))}
+          <p>Fine-tune the assumptions for your Daraz listing.</p>
         </div>
       </div>
 
